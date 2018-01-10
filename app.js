@@ -22,8 +22,10 @@ document.addEventListener('DOMContentLoaded', function(e) {
 	}
 		
 	countDays();
+	let updateCounter = getStoredItem('count');
 	let updatedHours = getStoredItem('hours');
 	hours.innerHTML = updatedHours;
+	counter.innerHTML = updateCounter;
 });
 
 function convertToNumAndAdd(current, value) {
