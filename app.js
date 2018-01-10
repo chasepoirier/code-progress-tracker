@@ -33,8 +33,9 @@ document.addEventListener('DOMContentLoaded', function(e) {
 	if(localStorage.getItem('count') === null) {
 		localStorage.setItem('count', 1)
 	}
-		
-	countDays();
+	
+	setInterval(() => countDays(), 100)	
+	
 	let updateCounter = getStoredItem('count');
 	let updatedHours = getStoredItem('hours');
 	hours.innerHTML = updatedHours;
@@ -66,11 +67,13 @@ function getStoredItem(item) {
 }
 
 function countDays() {
-	let count = parseInt(getStoredItem('count'));
-	setInterval(() => {
-		storeItem('count', count += 1)
-		counter.innerHTML = count += 1;
-	}, 86400000)
-}
 
-//86400000
+	let oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+	let hours = 24*60*60;
+	let startDay = new Date(2018,00,10);
+	let currentTime = Date.now();
+
+	let diffDays = Math.abs((currentTime - startDay.getTime()) / oneDay) + 1;
+
+	counter.innerHTML = diffDays.toFixed(6);
+}
