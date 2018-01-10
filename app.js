@@ -1,13 +1,20 @@
 let counter = document.querySelector('.counter span');
 let hours = document.querySelector('.hours span');
-let btn = document.querySelector('.btn');
-let input = document.querySelector('.input');
+let addBtn = document.querySelector('.add-container .btn');
+let addInput = document.querySelector('.add-container .input');
+let subBtn = document.querySelector('.sub-container .btn');
+let subInput = document.querySelector('.sub-container .input');
 
-btn.addEventListener('click', function(e) {
-	e.preventDefault()
-	
-	
-	let updatedHours = convertToNumAndAdd(hours.innerHTML, input.value);
+addBtn.addEventListener('click', function(e) {
+	e.preventDefault();
+	let updatedHours = convertToNumAndAdd(hours.innerHTML, addInput.value);
+	storeItem('hours', updatedHours);
+	hours.innerHTML = updatedHours;
+});
+
+subBtn.addEventListener('click', function(e) {
+	e.preventDefault();
+	let updatedHours = convertToNumAndSub(hours.innerHTML, subInput.value);
 	storeItem('hours', updatedHours);
 	hours.innerHTML = updatedHours;
 });
@@ -33,6 +40,13 @@ function convertToNumAndAdd(current, value) {
 	let valueToNum = parseFloat(value);
 
 	return Math.round((currentToNum + valueToNum)*100) / 100;
+}
+
+function convertToNumAndSub(current, value) {
+	let currentToNum = parseFloat(current);
+	let valueToNum = parseFloat(value);
+
+	return Math.round((currentToNum - valueToNum)*100) / 100;
 }
 
 function storeItem(item, val) {

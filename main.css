@@ -46,27 +46,41 @@ body {
 	font-weight: 600;
 }
 
+.controls-container {
+	width: 70%;
+	display: flex;
+	justify-content: center;
+}
+
+.add-container {
+	margin-right: 25px;
+}
+
+.sub-container,
 .add-container {
 	margin-top: 50px;
+	width: 150px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
 }
 
+.sub-container .input,
 .add-container .input {
 	background-color: transparent;
 	border: 1px solid #222;
 	text-align: center;
 	border-radius: 5px;
 	font-size: 21px;
-	width: 51%;
+	width: 100%;
 	outline: none;
 	height: 30px;
 }	
 
+.sub-container .btn,
 .add-container .btn {
-	width: 51%;
+	width: 100%;
 	margin-top: 15px;
 	height: 35px;
 	background-color: #222;
@@ -80,6 +94,7 @@ body {
 	cursor: pointer;
 }
 
+.sub-container .btn:active,
 .add-container .btn:active {
 	transform: translateY(4px);
 }
