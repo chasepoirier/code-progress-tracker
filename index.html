@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Progress Tracker</title>
 	<link rel="stylesheet" type="text/css" href="/main.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
@@ -12,6 +13,11 @@
 		<div class="hours">Coded For: <span>0</span> Hours</div>
 		
 		<div class="controls-container">
+			<div class="session-container">
+				<input placeholder="Start a coding session..." readonly name="hours" class="input">
+				<input type="submit" name="add" class="btn" value="Start Session">
+			</div>
+
 			<div class="add-container">
 				<input type="number" name="hours" class="input">
 				<input type="submit" name="add" class="btn" value="Add Hours">	
@@ -19,10 +25,20 @@
 
 			<div class="sub-container">
 				<input type="number" name="hours" class="input">
-				<input type="submit" name="sub" class="btn" value="Subtract Hours">	
-			</div>	
+				<input type="submit" name="sub" class="btn" value="Subtract Hours">
+			</div>
+
+			
 		</div>
 	</div>
+	<div class="settings-btn">Settings</div>
+	<div class="settings">
+		<div class="close">X</div>
+		<label>Pick a Start Date</label>
+		<input type="date" name="date" class="input">
+		<input type="submit" name="submit" value="Set Start Date" class="btn">
+	</div>
+	<div class="overlay"></div>
 	<script src="/app.js"></script>
 </body>
 </html>

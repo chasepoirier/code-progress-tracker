@@ -8,7 +8,10 @@ body {
 	align-items: center;
 	width: 100%;
 	background-color: #FFE109;
+	position: relative;
+	font-family: 'Roboto', sans-serif;
 }
+
 
 .container {
 	width: calc(100% - 48px);
@@ -18,20 +21,18 @@ body {
 	grid-template-columns: 1fr;
 	justify-items: center;
 	grid-gap: 10px;
-	
+	position: relative;
+	z-index: 2;
 }
 
 .container .content-container {
 	width: 60%;
 }
 
-.container div {
-	font-family: 'avenir';
-}
-
 .container .title {
 	font-size: 48px;
 	font-weight: 800;
+	text-align: center;
 }
 
 .container .counter {
@@ -48,18 +49,28 @@ body {
 
 .controls-container {
 	width: 70%;
-	display: flex;
-	justify-content: center;
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 30px 25px;
+	margin-top: 75px;
+}
+
+.session-container {
+	grid-area: 2 / 1 / 3 / 3;
 }
 
 .add-container {
-	margin-right: 25px;
+	grid-area: 1 / 1 / 2 / 2;
+}
+
+.sub-container {
+	grid-area: 1 / 2 / 2 / 3;
 }
 
 .sub-container,
-.add-container {
-	margin-top: 50px;
-	width: 150px;
+.add-container,
+.session-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -67,7 +78,9 @@ body {
 }
 
 .sub-container .input,
-.add-container .input {
+.add-container .input,
+.session-container .input,
+.settings .input {
 	background-color: transparent;
 	border: 1px solid #222;
 	text-align: center;
@@ -78,8 +91,21 @@ body {
 	height: 30px;
 }	
 
+.session-container .input {
+	cursor: default;
+	font-size: 16px;
+}
+
+.session-container .input::placeholder {
+	font-size: 16px;
+	color: #444;
+	transform: translateY(-1px);
+}
+
 .sub-container .btn,
-.add-container .btn {
+.add-container .btn,
+.session-container .btn,
+.settings .btn {
 	width: 100%;
 	margin-top: 15px;
 	height: 35px;
@@ -95,6 +121,59 @@ body {
 }
 
 .sub-container .btn:active,
-.add-container .btn:active {
+.add-container .btn:active,
+.session-container .btn:active {
 	transform: translateY(4px);
+}
+
+.settings-btn {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	cursor: pointer;
+}
+
+.settings-btn:hover {
+	text-decoration: underline;
+}
+
+.settings {
+	position: absolute;
+	width: 100%;
+	max-width: 600px;
+	background-color: #fff;
+	box-shadow: 1px 1px 5px rgba(0,0,0,.2);
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-content: center;
+	align-items: center;
+	height: 420px;
+	z-index: 1000;
+	border-radius: 5px;
+}
+
+
+.settings .close {
+	position: absolute;
+	top: 25px;
+	right: 25px;
+	cursor: pointer;
+}
+
+.settings label {
+	text-align: center;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.settings .btn,
+.settings .input {
+	width: 60%;
+}
+
+.settings input,
+.settings label {
+	width: 60%;
+	margin: 25px 0px;
 }
