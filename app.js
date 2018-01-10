@@ -11,6 +11,7 @@ addBtn.addEventListener('click', function(e) {
 		let updatedHours = convertToNumAndAdd(hours.innerHTML, addInput.value);
 		storeItem('hours', updatedHours);
 		hours.innerHTML = updatedHours;
+		addInput.value = '';
 	}
 });
 
@@ -20,6 +21,7 @@ subBtn.addEventListener('click', function(e) {
 		let updatedHours = convertToNumAndSub(hours.innerHTML, subInput.value);
 		storeItem('hours', updatedHours);
 		hours.innerHTML = updatedHours;
+		subInput.value = '';
 	}
 });
 
