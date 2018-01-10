@@ -106,14 +106,14 @@ function convertToNumAndAdd(current, value) {
 	let currentToNum = parseFloat(current);
 	let valueToNum = parseFloat(value);
 
-	return Math.round((currentToNum + valueToNum)*100) / 100;
+	return Math.round((currentToNum + valueToNum)*1000) / 1000;
 }
 
 function convertToNumAndSub(current, value) {
 	let currentToNum = parseFloat(current);
 	let valueToNum = parseFloat(value);
 
-	return Math.round((currentToNum - valueToNum)*100) / 100;
+	return Math.round((currentToNum - valueToNum)*1000) / 1000;
 }
 
 
