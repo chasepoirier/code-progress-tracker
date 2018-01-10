@@ -7,16 +7,20 @@ let subInput = document.querySelector('.sub-container .input');
 
 addBtn.addEventListener('click', function(e) {
 	e.preventDefault();
-	let updatedHours = convertToNumAndAdd(hours.innerHTML, addInput.value);
-	storeItem('hours', updatedHours);
-	hours.innerHTML = updatedHours;
+	if(addInput.value) {
+		let updatedHours = convertToNumAndAdd(hours.innerHTML, addInput.value);
+		storeItem('hours', updatedHours);
+		hours.innerHTML = updatedHours;
+	}
 });
 
 subBtn.addEventListener('click', function(e) {
 	e.preventDefault();
-	let updatedHours = convertToNumAndSub(hours.innerHTML, subInput.value);
-	storeItem('hours', updatedHours);
-	hours.innerHTML = updatedHours;
+	if(subInput.value) {
+		let updatedHours = convertToNumAndSub(hours.innerHTML, subInput.value);
+		storeItem('hours', updatedHours);
+		hours.innerHTML = updatedHours;
+	}
 });
 
 document.addEventListener('DOMContentLoaded', function(e) {
