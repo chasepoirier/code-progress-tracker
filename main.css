@@ -1,0 +1,85 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	background-color: #FFE109;
+}
+
+.container {
+	width: calc(100% - 48px);
+	max-width: 720px;
+	display: grid;
+	grid-template-rows: repeat(4, 100%);
+	grid-template-columns: 1fr;
+	justify-items: center;
+	grid-gap: 10px;
+	
+}
+
+.container .content-container {
+	width: 60%;
+}
+
+.container div {
+	font-family: 'avenir';
+}
+
+.container .title {
+	font-size: 48px;
+	font-weight: 800;
+}
+
+.container .counter {
+	font-size: 28px;
+}
+
+.container .hours {
+	font-size: 21px;
+}
+
+.container .hours span{
+	font-weight: 600;
+}
+
+.add-container {
+	margin-top: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.add-container .input {
+	background-color: transparent;
+	border: 1px solid #222;
+	text-align: center;
+	border-radius: 5px;
+	font-size: 21px;
+	width: 51%;
+	outline: none;
+	height: 30px;
+}	
+
+.add-container .btn {
+	width: 51%;
+	margin-top: 15px;
+	height: 35px;
+	background-color: #222;
+	color: #fff;
+	box-shadow: none;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	font-size: 14px;
+	transition: all .2s;
+	cursor: pointer;
+}
+
+.add-container .btn:active {
+	transform: translateY(4px);
+}
