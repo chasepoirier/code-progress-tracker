@@ -1,18 +1,68 @@
 let counter = document.querySelector('.counter span');
 let hours = document.querySelector('.hours span');
+
 let addBtn = document.querySelector('.add-container .btn');
 let addInput = document.querySelector('.add-container .input');
+
 let subBtn = document.querySelector('.sub-container .btn');
 let subInput = document.querySelector('.sub-container .input');
 
-let changeDateBtn = document.querySelector('.settings .btn');
 let settingsBtn = document.querySelector('.settings-btn');
 let settingsCloseBtn = document.querySelector('.settings .close');
+
+let changeDateBtn = document.querySelector('.settings .btn');
 let dateInput = document.querySelector('.settings .input');
 
 let sessionBtn = document.querySelector('.session-container .btn');
 let sessionInput = document.querySelector('.session-container .input');
+
 let startSession;
+
+
+/*
+|-------------------------------------------------------
+| Functions for Initial Load of DOM
+|-------------------------------------------------------
+| Continuously count days and do specific functions
+| based on the start of localStorage.
+|
+*/
+
+document.addEventListener('DOMContentLoaded', function(e) {
+	changeDateBtn.parentNode.style.display = 'none';
+
+	if(localStorage.getItem('hours') === null) {
+		localStorage.setItem('hours', 0)
+	}
+
+	if(localStorage.getItem('start-date') === null) {
+		changeDateBtn.parentNode.style.display = 'flex';
+		settingsBtn.style.display = 'none';
+	}
+
+	if(localStorage.getItem('current-session') !== null) {
+		let startTime = getStoredItem('current-session');
+
+		startSession = setInterval(() => countHours(startTime), 100);
+		sessionBtn.value = 'End Session';
+	}
+	
+	setInterval(() => countDays(), 100)	
+	
+	let updatedHours = getStoredItem('hours');
+	hours.innerHTML = updatedHours;
+});
+
+
+
+/*
+|-------------------------------------------------------
+| Button Listener Events
+|-------------------------------------------------------
+| Event listeners for each button in the application.
+| Each event has a unique set of functionality
+|
+*/
 
 sessionBtn.addEventListener('click', function(e) {	
 	if(sessionBtn.value === 'Start Session') {
@@ -74,33 +124,16 @@ settingsCloseBtn.addEventListener('click', function(e) {
 
 
 
-// DOM CONTENT LOADED EVENT LISTENER
 
-document.addEventListener('DOMContentLoaded', function(e) {
-	changeDateBtn.parentNode.style.display = 'none';
 
-	if(localStorage.getItem('hours') === null) {
-		localStorage.setItem('hours', 0)
-	}
-
-	if(localStorage.getItem('start-date') === null) {
-		changeDateBtn.parentNode.style.display = 'flex';
-		settingsBtn.style.display = 'none';
-	}
-
-	if(localStorage.getItem('current-session') !== null) {
-		let startTime = getStoredItem('current-session');
-
-		startSession = setInterval(() => countHours(startTime), 100);
-		sessionBtn.value = 'End Session';
-	}
-	
-	setInterval(() => countDays(), 100)	
-	
-	let updatedHours = getStoredItem('hours');
-	hours.innerHTML = updatedHours;
-});
-
+/*
+|-------------------------------------------------------
+| Functions to convert strings to nums
+|-------------------------------------------------------
+| Converts user input and either adds or subtracts
+| the input compared to the old state.
+|
+*/
 
 function convertToNumAndAdd(current, value) {
 	let currentToNum = parseFloat(current);
@@ -117,6 +150,15 @@ function convertToNumAndSub(current, value) {
 }
 
 
+/*
+|-------------------------------------------------------
+| Get and set local storage
+|-------------------------------------------------------
+| Functions to set new items or retrieve 
+| data in local storage.
+|
+*/
+
 function storeItem(item, val) {
 	localStorage.setItem(item, val);
 }
@@ -126,6 +168,17 @@ function getStoredItem(item) {
 	value = localStorage.getItem(item);
 	return value;
 }
+
+
+
+/*
+|-------------------------------------------------------
+| Count hours and days
+|-------------------------------------------------------
+| Math functinos to count the amount of hours or
+| the amount of days since a set date.
+|
+*/
 
 function countHours(start) {
 	let currentTime = Date.now()
@@ -139,11 +192,8 @@ function countDays() {
 
 	if(startDay) {
 		let oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-		
 		let currentTime = Date.now();
-
 		let diffDays = Math.abs((currentTime - startDay.getTime()) / oneDay) + 1;
-
 		counter.innerHTML = diffDays.toFixed(6);
 	}
 }
