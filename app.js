@@ -1,5 +1,6 @@
 let counter = document.querySelector('.counter span');
 let hours = document.querySelector('.hours span');
+let percent = document.querySelector('.percent span');
 
 let addBtn = document.querySelector('.add-container .btn');
 let addInput = document.querySelector('.add-container .input');
@@ -51,6 +52,8 @@ document.addEventListener('DOMContentLoaded', function(e) {
 	
 	let updatedHours = getStoredItem('hours');
 	hours.innerHTML = updatedHours;
+
+	percentOfHoursWorked(Date.now())
 });
 
 
@@ -179,6 +182,17 @@ function getStoredItem(item) {
 | the amount of days since a set date.
 |
 */
+
+function percentOfHoursWorked (start) {
+	let current = new Date(localStorage.getItem('start-date'));
+	current.getTime()
+
+	let totalHours = (start - current) / (60*60*1000)
+	let hoursWorked = parseFloat(hours.innerHTML)
+	let result = hoursWorked / totalHours;
+
+	percent.innerHTML = result.toFixed(2)*100;
+}
 
 function countHours(start) {
 	let currentTime = Date.now()
